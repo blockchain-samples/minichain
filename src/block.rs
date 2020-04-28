@@ -3,7 +3,7 @@ use crypto_hash::{hex_digest, Algorithm};
 use serde::{Serialize, Deserialize};
 use crate::now;
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Block {
     pub nonce: u32,
     pub previous_hash: String,
