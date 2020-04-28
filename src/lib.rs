@@ -1,4 +1,5 @@
 mod block;
+mod transaction;
 pub mod blockchain;
 
 use std::time::SystemTime;
