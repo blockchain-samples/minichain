@@ -1,3 +1,5 @@
+// minichain
+
 use minichain::blockchain::Blockchain;
 
 fn main() {
