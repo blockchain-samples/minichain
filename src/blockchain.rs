@@ -52,7 +52,7 @@ impl Blockchain {
         let transactions = self.transaction_pool.clone();
         let previous_hash = self.last_block().hash();
         let mut nonce = 0;
-        while self.valid_proof(nonce, &previous_hash, &transactions, MINING_DIFFICULTY) != false {
+        while self.valid_proof(nonce, &previous_hash, &transactions, MINING_DIFFICULTY) != true {
             nonce += 1;
         }
         nonce
