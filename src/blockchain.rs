@@ -78,4 +78,18 @@ impl Blockchain {
         self.create_block(nonce, previous_hash);
         true
     }
+    pub fn calculate_total_amount(&self, blockchain_address: String) -> f32 {
+        let mut total_amount: f32 = 0.0;
+        for b in &self.chain {
+            for t in &b.transactions {
+                if blockchain_address == t.recipient_blockchain_address {
+                    total_amount += t.value;
+                }
+                if blockchain_address == t.sender_blockchain_address {
+                    total_amount -= t.value;
+                }
+            }
+        }
+        total_amount
+    }
 }
