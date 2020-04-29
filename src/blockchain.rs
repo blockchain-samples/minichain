@@ -52,7 +52,7 @@ impl Blockchain {
         let guess_hash_str = guess_block.hash();
         guess_hash_str[..difficulty] == zeros
     }
-    pub fn proof_of_work(self) -> u32 {
+    pub fn proof_of_work(&self) -> u32 {
         let transactions = self.transaction_pool.clone();
         let previous_hash = self.last_block().hash();
         let mut nonce = 0;
@@ -63,7 +63,7 @@ impl Blockchain {
     }
     pub fn mining(&mut self) -> bool {
         self.add_transaction(MINING_SENDER.to_string(), &self.blockchain_address.to_string(), MINING_REWARD);
-        let nonce = self.clone().proof_of_work();
+        let nonce = self.proof_of_work();
         let previous_hash = self.last_block().hash();
         self.create_block(nonce, previous_hash);
         true
