@@ -1,8 +1,8 @@
 extern crate crypto_hash;
-use crypto_hash::{hex_digest, Algorithm};
-use serde::{Serialize, Deserialize};
 use crate::now;
 use crate::transaction::Transaction;
+use crypto_hash::{hex_digest, Algorithm};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Block {
@@ -22,6 +22,9 @@ impl Block {
         }
     }
     pub fn hash(&self) -> String {
-        hex_digest(Algorithm::SHA256, serde_json::to_string(self).unwrap().as_bytes())
+        hex_digest(
+            Algorithm::SHA256,
+            serde_json::to_string(self).unwrap().as_bytes(),
+        )
     }
 }
