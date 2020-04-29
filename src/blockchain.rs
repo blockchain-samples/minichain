@@ -37,7 +37,7 @@ impl Blockchain {
         let t = Transaction::new_transaction(sender, recipient, value);
         self.transaction_pool.push(t)
     }
-    pub fn valid_proof(&self, nonce: u32, previous_hash: &String, transactions: &Vec<Transaction>, difficulty: usize) -> bool {
+    fn valid_proof(&self, nonce: u32, previous_hash: &String, transactions: &Vec<Transaction>, difficulty: usize) -> bool {
         let zeros = "000".to_string();
         let guess_block = Block {
             nonce: nonce,
