@@ -4,7 +4,7 @@ use serde::{Serialize, Deserialize};
 use crate::now;
 use crate::transaction::Transaction;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Block {
     pub nonce: u32,
     pub previous_hash: String,

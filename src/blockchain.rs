@@ -2,7 +2,9 @@ use crate::block::Block;
 use crate::now;
 use crate::transaction::Transaction;
 
-#[derive(Debug)]
+const MINING_DIFFICULTY: usize = 3;
+
+#[derive(Debug, Clone)]
 pub struct Blockchain {
     transaction_pool: Vec<Transaction>,
     chain: Vec<Block>
@@ -34,5 +36,27 @@ impl Blockchain {
     pub fn add_transaction(&mut self, sender: String, recipient: String, value: f32) {
         let t = Transaction::new_transaction(sender, recipient, value);
         self.transaction_pool.push(t)
+    }
+    pub fn valid_proof(self, nonce: u32, previous_hash: &String, transactions: &Vec<Transaction>, difficulty: usize) -> bool {
+        let zeros = "000".to_string();
+        let guess_block = Block {
+            nonce: nonce,
+            previous_hash: previous_hash.to_string(),
+            timestamp: 0,
+            transactions: transactions.to_vec(),
+        };
+        let guess_hash_str = guess_block.hash();
+        guess_hash_str[..difficulty] == zeros
+    }
+    pub fn proof_of_work(self) -> u32 {
+        let transactions = self.transaction_pool.clone();
+        let previous_hash = self.last_block().hash();
+        let mut nonce = 0;
+        loop {
+            if self.valid_proof(nonce, &previous_hash, &transactions, MINING_DIFFICULTY) {
+                return nonce
+            }
+            nonce += 1;
+        }
     }
 }
