@@ -1,9 +1,9 @@
-extern crate secp256k1;
 extern crate rand;
+extern crate secp256k1;
 
+use self::secp256k1::{Message, PublicKey, Secp256k1, SecretKey};
 use rand::OsRng;
-use secp256k1::{Secp256k1, Message};
-use self::secp256k1::{Secp256k1, Message, SecretKey, PublicKey};
+use secp256k1::{Message, Secp256k1};
 
 struct Wallet {
     private_key: SecretKey,
