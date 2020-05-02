@@ -1,4 +1,5 @@
 extern crate crypto_hash;
+
 use crate::now;
 use crate::transaction::Transaction;
 use crypto_hash::{hex_digest, Algorithm};
