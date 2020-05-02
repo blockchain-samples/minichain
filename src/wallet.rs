@@ -1,20 +1,22 @@
-extern crate rand;
 extern crate secp256k1;
+extern crate rand;
 
-use self::secp256k1::{Message, PublicKey, Secp256k1, SecretKey};
-use rand::OsRng;
-use secp256k1::{Message, Secp256k1};
+//use rand::OsRng;
+//use secp256k1::{Secp256k1, Message};
+use self::secp256k1::{Secp256k1, SecretKey, PublicKey};
 
-struct Wallet {
-    private_key: SecretKey,
-    public_key: PublicKey,
+pub struct Wallet {
+    pub private_key: SecretKey,
+    pub public_key: PublicKey,
 }
 
 impl Wallet {
-    fn new_wallet() -> Self {
+    pub fn new_wallet() -> Self {
         let secp = Secp256k1::new();
-        let mut rng = OsRng::new().expect("OsRng");
-        let (secret_key, public_key) = secp.generate_keypair(&mut rng);
+//        let mut rng = OsRng::new().expect("OsRng");
+//        let (secret_key, public_key) = secp.generate_keypair(&mut rng);
+        let secret_key = SecretKey::from_slice(&[0xcd; 32]).expect("32 bytes, within curve order");
+        let public_key = PublicKey::from_secret_key(&secp, &secret_key);
         Wallet {
             private_key: secret_key,
             public_key: public_key,

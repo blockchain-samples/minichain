@@ -1,4 +1,5 @@
 use minichain::blockchain::Blockchain;
+use minichain::wallet::Wallet;
 
 fn main() {
     let my_blockchain_address: String = "my_blockchain_address".to_string();
@@ -22,4 +23,8 @@ fn main() {
     println!("Total amount of my_blockchain_address: {:.1}", bc.calculate_total_amount("my_blockchain_address".to_string()));
     println!("Total amount of C: {:.1}", bc.calculate_total_amount("C".to_string()));
     println!("Total amount of D: {:.1}", bc.calculate_total_amount("D".to_string()));
+
+    let wallet = Wallet::new_wallet();
+    println!("Private Key: {}", wallet.private_key);
+    println!("Public Key: {}", wallet.public_key);
 }
