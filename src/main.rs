@@ -26,5 +26,5 @@ fn main() {
 
     let wallet = Wallet::new_wallet();
     println!("Private Key: {}", wallet.private_key);
-    println!("Public Key: {}", wallet.public_key);
+    println!("Public Key: {:?}", wallet.public_key);
 }
