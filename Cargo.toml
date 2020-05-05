@@ -14,3 +14,4 @@ secp256k1 = { version = "0.17.2", features = ["rand", "serde"] }
 rand = "0.6"
 bitcoin_hashes = "0.7.6"
 bs58 = "0.3.1"
+hex = "0.4.2"

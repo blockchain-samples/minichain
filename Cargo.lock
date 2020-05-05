@@ -76,7 +76,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8a77162240fd97248d19a564a565eb563a3f592b386e4136fb300909e67dddca"
 dependencies = [
  "commoncrypto",
- "hex",
+ "hex 0.3.2",
  "openssl",
  "winapi",
 ]
@@ -109,6 +109,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "805026a5d0141ffc30abb3be3173848ad46a1b1664fe632428479619a3644d77"
 
 [[package]]
+name = "hex"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "644f9158b2f133fd50f5fb3242878846d9eb792e445c893805ff0e3824006e35"
+
+[[package]]
 name = "itoa"
 version = "0.4.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -133,6 +139,7 @@ dependencies = [
  "bitcoin_hashes",
  "bs58",
  "crypto-hash",
+ "hex 0.4.2",
  "rand",
  "secp256k1",
  "serde",

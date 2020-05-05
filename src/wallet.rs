@@ -1,15 +1,17 @@
 extern crate secp256k1;
 //extern crate crypto_hash;
 extern crate bitcoin_hashes;
+extern crate hex;
 
 use secp256k1::rand::rngs::OsRng;
-use secp256k1::{Secp256k1, SecretKey};
+use secp256k1::{Secp256k1, PublicKey, SecretKey};
 //use crypto_hash::{hex_digest, Algorithm};
 use bitcoin_hashes::{sha256, Hash, ripemd160};
 
 pub struct Wallet {
     pub private_key: SecretKey,
-    pub public_key: String,
+    pub public_key: PublicKey,
+    pub blockchain_address: String,
 }
 
 impl Wallet {
@@ -44,7 +46,8 @@ impl Wallet {
 
         Wallet {
             private_key: secret_key,
-            public_key: h10,
+            public_key: public_key,
+            blockchain_address: h10,
         }
     }
 }
