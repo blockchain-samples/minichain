@@ -4,7 +4,7 @@ extern crate secp256k1;
 
 use bitcoin_hashes::{ripemd160, sha256, Hash};
 use secp256k1::rand::rngs::OsRng;
-use secp256k1::{PublicKey, Secp256k1, SecretKey};
+use secp256k1::{Message, PublicKey, Secp256k1, SecretKey, Signature};
 
 pub struct Wallet {
     pub private_key: SecretKey,
@@ -57,5 +57,36 @@ impl Wallet {
             public_key: public_key,
             blockchain_address: bitcoin_address,
         }
+    }
+}
+
+pub struct Transaction {
+    sender_private_key: SecretKey,
+    sender_public_key: PublicKey,
+    sender_blockchain_address: String,
+    recipient_blockchain_address: String,
+    value: f32,
+}
+
+impl Transaction {
+    pub fn new_transaction(
+        sender_private_key: SecretKey,
+        sender_public_key: PublicKey,
+        sender_blockchain_address: String,
+        recipient_blockchain_address: String,
+        value: f32,
+    ) -> Self {
+        Transaction {
+            sender_private_key: sender_private_key,
+            sender_public_key: sender_public_key,
+            sender_blockchain_address: sender_blockchain_address,
+            recipient_blockchain_address: recipient_blockchain_address,
+            value: value,
+        }
+    }
+    pub fn generate_signature(&self) -> Signature {
+        let secp = Secp256k1::new();
+        let message = Message::from_slice(&[0xab; 32]).expect("32 bytes");
+        secp.sign(&message, &self.sender_private_key)
     }
 }
