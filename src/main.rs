@@ -1,5 +1,4 @@
 use minichain::blockchain::Blockchain;
-use minichain::wallet::Transaction;
 use minichain::wallet::Wallet;
 
 fn main() {
@@ -38,7 +37,7 @@ fn main() {
     println!("Private Key: {}", wallet.private_key);
     println!("Public Key: {:?}", wallet.public_key);
     println!("Blockchain Address: {:?}", wallet.blockchain_address);
-    let transaction = Transaction::new_transaction(
+    let transaction = Wallet::new_transaction(
         wallet.private_key,
         wallet.public_key,
         wallet.blockchain_address,
